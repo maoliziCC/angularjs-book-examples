@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular基础</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstCtrl">
+        {{name}}
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="application/javascript">
+//第二种方式,用config方法引入
+    var myApp=angular.module('myApp',[]);
+
+    myApp.config(function($provide){
+        $provide.provider('providerService01',function(){
+            this.$get=function(){
+                return {message:'this is providerService01'};
+            }
+        });
+
+        $provide.provider('providerService02',function(){
+            this.$get=function(){
+                var _name="";
+                var service={};
+                service.setName=function(name){
+                    _name=name;
+                }
+                service.getName=function(){
+                    return _name;
+                }
+                return service;
+            }
+        });
+    });
+
+    myApp.controller('firstCtrl',['$scope','providerService01','providerService02',function($scope,providerService01,providerService02){
+        console.log(providerService01);
+        providerService02.setName("服务二");
+        $scope.name=providerService02.getName();
+    }]);
+
+
+</script>
+</body>
+</html>

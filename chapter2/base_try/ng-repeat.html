@@ -1,0 +1,69 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>ng-repeat例子</title>
+</head>
+
+<body>
+    <!-- ng-if -->
+    <div ng-if="2+2===5">
+        Won't see this DOM node, not even in the source code
+    </div>
+    <div ng-if="2+2===4">
+        Hi, I do exist
+    </div>
+    <br>
+    <!-- ng-repeat -->
+    <ul ng-controller="PeopleController">
+        <li ng-repeat="person in people" ng-class="{even: !$even, odd: !$odd}">
+            {{person.name}} lives in {{person.city}}
+        </li>
+    </ul>
+
+    <br>
+    <!-- ng-init -->
+    <div ng-init="greeting='Hello';person='World'">
+        {{greeting}} {{person}}
+    </div>
+
+    <br>
+    <!-- ng-show/ng-hide -->
+    <div ng-show="2 + 2 == 5">
+        2 + 2 isn't 5, don't show
+    </div>
+    <div ng-show="2 + 2 == 4">
+        2 + 2 is 4, do show
+    </div>
+    <div ng-hide="2 + 2 == 5">
+        2 + 2 isn't 5, don't hide
+    </div>
+    <div ng-hide="2 + 2 == 4">
+        2 + 2 is 4, do hide
+    </div>
+
+</body>
+<script>
+
+    angular.module('myApp', [])
+        .controller('PeopleController', function ($scope) {
+            $scope.people = [
+                { name: "Ari", city: "San Francisco" },
+                { name: "Erik", city: "Seattle" }
+            ];
+        });
+
+</script>
+<style>
+    .odd {
+        background-color: blue;
+    }
+
+    .even {
+        background-color: red;
+    }
+</style>
+
+
+</html>

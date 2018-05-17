@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular基础</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstCtrl">
+        {{name}}
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="application/javascript">
+//第一种方式，在module中以回调函数的形式作为参数引入
+    var myApp=angular.module('myApp',[],function($provide){
+        $provide.provider('providerService01',function(){
+            this.$get=function(){
+                return {message:'this is providerService01'};
+            }
+        });
+        $provide.provider('providerService02',function(){
+            this.$get=function(){
+                return 'this is providerService02';
+            }
+        });
+        $provide.factory('factoryService01',function(){
+            return {message:'this is factoryService01'};
+        });
+        $provide.factory('factoryService02',function(){
+            return 'this is factoryService02';
+        });
+        $provide.service('serviceService01',function(){
+            return {message:'this is serviceService01'};
+        });
+    });
+    myApp.controller('firstCtrl',['$scope','providerService01','providerService02','factoryService01','factoryService02','serviceService01',function(
+            $scope,providerService01,providerService02,factoryService01,factoryService02,serviceService01){
+        console.log(providerService01);
+        console.log(providerService02);
+        console.log(factoryService01);
+        console.log(factoryService02);
+        console.log(serviceService01);
+        $scope.name="张三";
+    }]);
+
+
+</script>
+</body>
+</html>

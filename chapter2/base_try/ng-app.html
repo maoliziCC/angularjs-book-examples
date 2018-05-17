@@ -1,0 +1,22 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>ng-app例子</title>
+</head>
+
+<body>
+    {{ someProperty }}
+    <button ng-click="someAction()">button</button>
+</body>
+<script>
+    angular.module('myApp', [])
+        .run(function ($rootScope) {
+            $rootScope.someProperty = 'hello computer';
+            $rootScope.someAction = function () {
+                $rootScope.someProperty = 'hello human';
+            };
+        });</script>
+
+</html>

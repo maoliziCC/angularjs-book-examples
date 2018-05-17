@@ -1,0 +1,72 @@
+<html ng-app="myApp">
+    <body ng-controller="DemoCtlr">
+          <span>{{ 123.456789 | number:2 }}</span> 
+          
+          <br>
+          <span>{{today | date: 'medium'}}</span><br>
+          <span>{{ today | date:'medium' }}</span><br> <!-- Aug 09, 2013 12:09:02 PM -->
+          <span>{{ today | date:'short' }}</span><br> <!-- 8/9/1312:09PM -->
+          <span>{{ today | date:'fullDate' }}</span><br> <!-- Thursday, August 09, 2013 -->
+          <span>{{ today | date:'longDate' }}</span> <br><!-- August 09, 2013 -->
+          <span>{{ today | date:'mediumDate' }}</span><br><!-- Aug 09, 2013 -->
+          <span>{{ today | date:'shortDate' }}</span><br> <!-- 8/9/13 -->
+          <span>{{ today | date:'mediumTime' }}</span><br><!-- 12:09:02 PM -->
+          <span>{{ today | date:'shortTime' }}</span><br> <!-- 12:09 PM -->
+
+          <sapn>{{ today | date:'hh:mm:ss.sss' }}</sapn><br>  <!-- 12:09:02.995 -->
+          <sapn>{{ ['Ari','Lerner','Likes','To','Eat','Pizza'] | filter:'e' }}</sapn><br><!-- ["Lerner","Likes","Eat"] -->
+          <sapn>{{ [{
+                'name': 'Ari',
+                'City': 'San Francisco',
+                'favorite food': 'Pizza'
+                },{
+                'name': 'Nate',
+                'City': 'San Francisco',
+                'favorite food': 'indian food'
+                }] | filter:{'favorite food': 'Pizza'} }}</sapn><br>
+          <sapn>{{ ['Ari','likes','to','travel'] | filter:isCapitalized }}</sapn><br>
+          <sapn>{{ [{
+                'name': 'Ari',
+                'status': 'awake'
+                },{
+                'name': 'Q',
+                'status': 'sleeping'
+                },{
+                'name': 'Nate',
+                'status': 'awake'
+                }] | orderBy:'name' }}</sapn><br>
+          <sapn>{{ [{
+                        'name': 'Ari',
+                        'status': 'awake'
+                        },{
+                        'name': 'Q',
+                        'status': 'sleeping'
+                        },{
+                        'name': 'Nate',
+                        'status': 'awake'
+                        }] | orderBy:'name':true }}</sapn><br>
+
+          <sapn>{{ 'ginger loves dog treats' | lowercase | capitalize }}</sapn><br>
+    </body>
+
+       <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script> -->
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+       <script>
+           var myApp = angular.module('myApp', []);
+           myApp.controller("DemoCtlr", function ($scope) {
+               $scope.today = new Date();
+       
+               $scope.isCapitalized = function(str) {
+                   return str[0] == str[0].toUpperCase();
+               };
+       
+           });
+           myApp.filter("capitalize", function(){
+               return function(input){
+                   if(input){
+                       return input[0].toUpperCase() + input.slice(1);
+                   }
+               }
+           });
+       </script>
+</html>

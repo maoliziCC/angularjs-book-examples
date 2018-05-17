@@ -1,0 +1,34 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>ng-class例子</title>
+</head>
+
+<body>
+    <div ng-controller="LotteryController">
+        <div ng-class="{red: x > 5}" ng-if="x > 5">
+            You won!
+        </div>
+        <button ng-click="x = generateNumber()" ng-init="x = 0">
+            Draw Number
+        </button>
+        <p>Number is: {{ x }}</p>
+    </div>
+</body>
+<script>
+    angular.module('myApp', [])
+        .controller('LotteryController', function ($scope) {
+            $scope.generateNumber = function () {
+                return Math.floor((Math.random() * 10) + 1);
+            };
+        });
+</script>
+<style>
+    .red {
+        background-color: red;
+    }
+</style>
+
+</html>

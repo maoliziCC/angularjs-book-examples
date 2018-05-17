@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular基础</title>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="firstCtrl">
+        {{name}}
+    </div>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script type="application/javascript">
+    //第三种方式，module调用各自的方法：
+    var myApp=angular.module('myApp',[]);
+
+    myApp.provider('providerService01',function(){
+        this.$get=function(){
+            return {message:'this is providerService01'};
+        }
+    });
+    myApp.factory('factoryService01',function(){
+            return {message:'this is factoryService01'};
+    });
+    myApp.service('serviceService01',function(){
+            return {message:'this is serviceService01'};
+    });
+    myApp.controller('firstCtrl',['$scope','providerService01','factoryService01','serviceService01',function(
+            $scope,providerService01,factoryService01,serviceService01){
+        console.log(providerService01);
+        console.log(factoryService01);
+        console.log(serviceService01);
+        $scope.name="张三";
+    }]);
+
+
+</script>
+</body>
+</html>

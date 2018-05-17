@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>Wait5seconds</title>
+</head>
+
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <input type="text" ng-model="someProperty" placeholder="TypetoEnable">
+        <button ng-model="button" ng-disabled="!someProperty">AButton</button>
+        <br>
+        <p>ng-readonly例子</p>
+        <input type="text" ng-readonly="someProperty" value="Some text here" />
+
+        <br>
+        <p></p>
+        <span>文本字段会被禁用五秒，直到在$timeout中将isDisabled属性设置为true</span>
+        <br>
+        <textarea ng-disabled="isDisabled">Wait5seconds</textarea>
+        <p>
+            ng-checked 例子
+        </p>
+        <label>someProperty = {{anotherProperty}}</label>
+        <input type="checkbox" ng-checked="anotherProperty" ng-init="anotherProperty = false" ng-model="anotherProperty">
+
+
+
+        <p>ng-selected例子</p>
+        <label>Select Two Fish:</label>
+        <input type="checkbox" ng-model="isTwoFish">
+        <br/>
+        <select>
+            <option>One Fish</option>
+            <option ng-selected="isTwoFish">Two Fish</option>
+        </select>
+
+
+        <br>
+        <!-- 当 href 包含一个 {{expression}}时总是使用 ng-href -->
+        <a ng-href="{{ myHref }}">I'm feeling lucky, when I load</a>
+        <!-- 用户单击之前，href不会加载 -->
+        <br>
+        <a href="{{ myHref }}">I'm feeling 404</a>
+        <br>
+
+        <!-- AngularJS会告诉浏览器在ng-src对应的表达式生效之前不要加载图像： -->
+        <br>
+        <h1>WrongWay</h1>
+        <img src="{{imgSrc}}" />
+        <h1>Rightway</h1>
+        <img ng-src="{{imgSrc}}" />
+
+
+    </div>
+    <script>
+        var myApp = angular.module('myApp', [])
+            .run(function ($rootScope, $timeout) {
+                $rootScope.isDisabled = true;
+                $timeout(function () {
+                    $rootScope.isDisabled = false;
+                }, 5000);
+
+                $timeout(function () {
+                    $rootScope.myHref = 'http://google.com';
+                }, 2000);
+
+                $timeout(function () {
+                    $rootScope.imgSrc = 'http://pic.616pic.com/ys_b_img/00/04/19/on1zUncKZx.jpg';
+                }, 2000);
+            });
+        myApp.controller('myCtrl', function ($scope, $interval) {
+            // $scope.someProperty = '';
+            // $scope.isDisabled = true;
+            $interval(function () {
+                var i = 0;
+                console.log(1 + i + 'second');
+            }, 1000, 6);
+        });
+    </script>
+</body>

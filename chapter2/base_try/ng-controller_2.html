@@ -1,0 +1,39 @@
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>ng-controller-2例子</title>
+</head>
+
+<body>
+    <div ng-controller="SomeController">
+        {{ someModel.someValue }}
+        <button ng-click="someAction()">Communicate to child</button>
+        <div ng-controller="ChildController">
+            {{ someModel.someValue }}
+            <button ng-click="childAction()">Communicate to parent</button>
+        </div>
+    </div>
+</body>
+<script>
+//    JavaScript对象要么是值复制要么是引用复制。字符串、数字和布尔型变量是值
+// 复制。数组、对象和函数则是引用复制。
+    angular.module('myApp', [])
+        .controller('SomeController', function ($scope) {
+            // 最佳实践，永远使用一个模式
+            $scope.someModel = {
+                someValue: 'hello computer'
+            }
+            $scope.someAction = function () {
+                $scope.someModel.someValue = 'hello human, from parent';
+            };
+        })
+        .controller('ChildController', function ($scope) {
+            $scope.childAction = function () {
+                $scope.someModel.someValue = 'hello human, from child';
+            };
+        });  
+</script>
+
+</html>
