@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body ng-controller="eventCtrl">    
+    <h1 id="h">
+        点我试试看
+    </h1>
+    <script type="text/javascript">
+        var h = document.getElementById("h");
+        h.addEventListener("click",function(e){
+            console.log("not from Angular");
+            console.log(e);
+        });
+    </script>
+</body>
+</html>

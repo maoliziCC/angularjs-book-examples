@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body ng-controller="eventCtrl">    
+    <h1 ng-click="doClick($event)" ng-mousedown="doMousedown($event)" ng-mouseup="doMouseup($event)">
+        点我试试看
+    </h1>
+    <h1 ng-mouseleave="doMouseleave($event)" ng-mouseenter="doMouseenter($event)" ng-mouseover="doMouseover($event)">
+        鼠标移入移出
+    </h1>
+    <div>
+    <input type="text" name="" ng-keydown="dokeydown($event)" ng-keyup="dokeyup($event)" ng-keypress="dokeypress($event)" 
+ng-focus="dofocus($event)" ng-blur="doblur($event)">
+    </div>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller('eventCtrl',function($scope){
+            $scope.doClick = function(e){
+                console.log(e);
+                console.log("clicked!");
+            }
+            $scope.doMousedown = function(e){
+                console.log(e);
+                console.log("mousedown!");
+            }
+            $scope.doMouseup = function(e){
+                console.log(e);
+                console.log("mouseup!");
+            }
+            $scope.doMouseleave = function(e){
+                console.log(e);
+                console.log("mouseleave!");
+            }
+            $scope.doMouseenter = function(e){
+                console.log(e);
+                console.log("mouseenter!");
+            }
+            $scope.doMousemove = function(e){
+                console.log(e);
+                console.log("mousemove!");
+            }
+            $scope.doMouseover = function(e){
+                console.log(e);
+                console.log("mouseover!");
+            }
+            $scope.dokeydown = function(e){
+                console.log(e);
+                console.log("keydown!");
+            }
+            $scope.dokeyup = function(e){
+                console.log(e);
+                console.log("keyup!");
+            }
+            $scope.dokeypress = function(e){
+                console.log(e);
+                console.log("keypress!");
+            }
+            $scope.dofocus = function(e){
+                console.log(e);
+                console.log("focus!");
+            }
+            $scope.doblur = function(e){
+                console.log(e);
+                console.log("blur!");
+            }
+
+        })
+    </script>
+</body>
+</html>

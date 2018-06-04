@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='myApp'>
+<head>
+    <meta charset="UTF-8">
+    <title>event</title>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body ng-controller="eventCtrl">    
+    <h1 id="h" ng-click="doClick($event)">
+        点我试试看
+    </h1>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script type="text/javascript">
+        var myApp = angular.module("myApp",[]);
+        myApp.controller('eventCtrl',function($scope){
+            $scope.doClick = function(e){
+                console.log("from angular clicked!");
+                console.log(e);
+            }
+        })
+    </script>
+</body>
+</html>
+
